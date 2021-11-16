@@ -18,9 +18,13 @@ export default function MenuLateral(){
             <MenuItem url="/ajustes" texto="Ajustes" icone={iconeAjustes}/>
             <MenuItem url="/notificacoes" texto="Notificacao" icone={iconeNovidade}/>
            </ul>
-           <ul >
-           <MenuItem url="/notificacoes" texto="Sair" icone={iconeLogaut}
-           onClick={() => console.log('logaut')} />
+           <ul>
+
+           <MenuItem texto="Sair" icone={iconeLogaut}
+           onClick={() => console.log('logaut')} 
+           className={`
+           text-red-600
+           hover:bg-red-400 hover:text-white `}  />
            </ul>
         </aside>
     )
