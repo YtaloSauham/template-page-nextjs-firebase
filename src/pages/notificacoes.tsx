@@ -4,7 +4,7 @@ import useAppData from "../data/hook/useAppData";
 
 export default function Notificacoes() {
 
-  const dados = useAppData()
+  const {alternarTema,tema}= useAppData()
   return (
     <Layout titulo="Notificacoes" subtitulo="Aqui vao as notificacoes">
       <h3>CONTEUDO</h3> 
@@ -12,7 +12,8 @@ export default function Notificacoes() {
         {dados=><h3>{dados.nome}</h3>}
       </AppConsumer> */}
 
-      <h3>{dados.nome}</h3> 
+      <h3>{tema}</h3>
+      <button onClick={alternarTema}>Click</button> 
 
     </Layout>
   )
