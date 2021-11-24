@@ -12,7 +12,7 @@ export default function Notificacoes() {
         {dados=><h3>{dados.nome}</h3>}
       </AppConsumer> */}
 
-      <h3>{tema}</h3>
+      
       <button onClick={alternarTema}>Click</button> 
 
     </Layout>
