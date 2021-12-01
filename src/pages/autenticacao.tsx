@@ -12,9 +12,20 @@ export default function Autenticacao(){
     
 
     return (
-    <div>
+        <div className="flex h-screen items-center justify-center ">
+            <div className="flex w-1/2">
+                <img
+                    src="https://source.unsplash.com/random"
+                    alt="Imagem da Tela de autenticação"
+                    className=" h-screen w-full object-cover"
+                />
+            </div>
+             
+             <div className="m-10 w-1/2
+    ">
         <h1 className={`
-        text-xl font-bold mb-5`}>
+        text-xl font-bold mb-5
+        `}>
             {modo === 'Login' ? 'Entre com a Sua Conta' : 'Cadastre-se na Plataforma'}
         </h1>
 
@@ -85,6 +96,9 @@ export default function Autenticacao(){
             {iconeGoogle(6)} Entrar com Google
 
         </button> */}
+
+        </div>
+   
     </div>
     )
 }

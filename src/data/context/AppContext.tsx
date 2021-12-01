@@ -31,7 +31,7 @@ export function AppProvider(props) {
         setTheme(theme=== 'dark' ? '' : 'dark')
         console.log(theme)
     }
-    return (
+    return ( 
         <AppContext.Provider value={{
             tema: theme,
             modo:modo,
