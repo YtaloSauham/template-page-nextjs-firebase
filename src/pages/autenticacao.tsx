@@ -1,31 +1,23 @@
 import { useState } from "react";
 import AuthInput from "../components/auth/AuthInput";
 import { iconeGoogle } from "../components/icons";
+import BotaoAuth from "../components/templatate/BotaoAuth";
+import useAppData from "../data/hook/useAppData";
 
 export default function Autenticacao(){
-    const [modo,setModo]= useState<'login' | 'cadastro'>('login')
+    
     const [email, setEmail] = useState('')
     const [password,setPassword] = useState('')
-
-    function submeter(){
-        if(modo === 'login'){
-            console.log('login')
-        } else{
-            console.log('cadastrar')
-        }
-    }
-
-
-
-
-
+    const {modo,submeter}=useAppData()
+    
 
     return (
     <div>
         <h1 className={`
         text-xl font-bold mb-5`}>
-            {modo === 'login' ? 'Entre com a Sua Conta' : 'Cadastre-se na Plataforma'}
+            {modo === 'Login' ? 'Entre com a Sua Conta' : 'Cadastre-se na Plataforma'}
         </h1>
+
         <AuthInput 
         label="Email"
         type='email'
@@ -41,6 +33,31 @@ export default function Autenticacao(){
         valorMudou={setPassword}
         obrigatorio/>
 
+        <BotaoAuth onClick={submeter} 
+        className={`
+        w-full 
+        bg-indigo-500 
+        hover:bg-indigo-400
+        text-white 
+        rounded-lg 
+        px-4 py-3 mt-6`} 
+        modo={modo}
+        />
+
+
+        <BotaoAuth onClick={submeter} 
+        className={`
+        w-full bg-red-500 
+        hover:bg-red-400
+        text-white 
+        rounded-lg 
+        px-4 py-3
+        mt-6
+        flex justify-center`}
+        icone={iconeGoogle(6)}
+        nomeBotao="Entrar com o Google"
+        />
+{/* 
         <button onClick={submeter} className={`
         w-full 
         bg-indigo-500 
@@ -67,7 +84,7 @@ export default function Autenticacao(){
 
             {iconeGoogle(6)} Entrar com Google
 
-        </button>
+        </button> */}
     </div>
     )
 }
