@@ -12,7 +12,6 @@ interface BotaoAuthProps{
 export default function BotaoAuth(props:BotaoAuthProps){
     return (
     <div>   
-     
         <button onClick={props.onClick} className={props.className ? props.className : `
         w-full 
         bg-indigo-500 

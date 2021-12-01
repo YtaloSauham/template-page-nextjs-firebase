@@ -29,7 +29,6 @@ export function AppProvider(props) {
     
     function alternarTema(){
         setTheme(theme=== 'dark' ? '' : 'dark')
-
         console.log(theme)
     }
     return (
