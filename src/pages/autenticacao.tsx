@@ -13,7 +13,8 @@ export default function Autenticacao(){
 
     return (
         <div className="flex h-screen items-center justify-center ">
-            <div className="flex w-1/2">
+            <div className="hidden md:block md:w-1/2 lg:w-2/3
+ ">
                 <img
                     src="https://source.unsplash.com/random"
                     alt="Imagem da Tela de autenticação"
@@ -21,10 +22,10 @@ export default function Autenticacao(){
                 />
             </div>
              
-             <div className="m-10 w-1/2
+             <div className="m-10 w-full md:w-1/2  lg:w-1/3
     ">
         <h1 className={`
-        text-xl font-bold mb-5
+        text-2xl font-bold mb-5
         `}>
             {modo === 'Login' ? 'Entre com a Sua Conta' : 'Cadastre-se na Plataforma'}
         </h1>
@@ -96,7 +97,34 @@ export default function Autenticacao(){
             {iconeGoogle(6)} Entrar com Google
 
         </button> */}
+            {modo === 'Login' ? (
 
+                <p className={`mt-8`}>
+                    Novo por aqui?
+                     <a onClick={() =>submeter()}
+                     className={`
+                        text-blue-500 font-semibold
+                        hover:text-blue-700
+                        cursor-pointer
+
+                        
+                     `}> Crie uma conta</a>
+
+                </p>
+               
+            ):
+           ( <p className={`mt-8`}>
+               Já tem uma conta? 
+                   <a onClick={() => submeter()}
+            className={`
+            text-blue-500 font-semibold
+                        hover:text-blue-700
+                        cursor-pointer`}> Faça o login aqui.
+                </a>
+
+            </p>
+        
+           )}
         </div>
    
     </div>

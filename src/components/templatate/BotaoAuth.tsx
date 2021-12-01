@@ -20,7 +20,7 @@ export default function BotaoAuth(props:BotaoAuthProps){
         rounded-lg 
         px-4 py-3 mt-6`}>
             {props.icone}
-            {props.modo === 'Login' ? 'Entrar' : props.nomeBotao}
+            {props.modo ? props.modo : props.nomeBotao}
         </button>
 
     </div>)

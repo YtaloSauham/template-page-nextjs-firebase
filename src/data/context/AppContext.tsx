@@ -20,11 +20,7 @@ export function AppProvider(props) {
     const [modo,setModo]= useState<Modo>('Login')
 
     function submeter(){
-        if(modo === 'Login'){
-            console.log('login')
-        } else{
-            console.log('cadastrar')
-        }
+      setModo(modo === 'Login'? 'Cadastro' : 'Login')
     }
     
     function alternarTema(){

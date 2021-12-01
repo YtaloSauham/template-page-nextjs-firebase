@@ -25,8 +25,6 @@ export default function AuthInput(props:AuthInputProps){
                 rounded-lg
                 border focus:border-blue-500 focus:outline-none focus:bg-white
                 
-                
-                
                 `}
                 />
             
