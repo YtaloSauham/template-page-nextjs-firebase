@@ -5,12 +5,18 @@ import BotaoAuth from "../components/templatate/BotaoAuth";
 import useAppData from "../data/hook/useAppData";
 
 export default function Autenticacao(){
-    
+    const [erro,setErro] = useState('')
     const [email, setEmail] = useState('')
     const [password,setPassword] = useState('')
     const {modo,submeter}=useAppData()
     
 
+    function msgErro(msg:string,tempo = 5){
+        setErro(msg)
+        setTimeout(()=> setErro(null), tempo * 1000)
+    }
+
+   
     return (
         <div className="flex h-screen items-center justify-center ">
             <div className="hidden md:block md:w-1/2 lg:w-2/3
@@ -29,16 +35,21 @@ export default function Autenticacao(){
         `}>
             {modo === 'Login' ? 'Entre com a Sua Conta' : 'Cadastre-se na Plataforma'}
         </h1>
+        {erro ? (
+            <div className={`
+            flex items-center
+            bg-red-400 text-white
+            py-3 px-5 
+            my-2
+            border border-red-700 rounded-lg
+            `}>
+                {iconeAvisoErro()}
+                <span className={`
+                ml-3`}>{erro}</span>
+                </div>
 
-        <div className={`
-        bg-red-400 text-white
-        py-3 px-5 
-        my-2
-        border border-red-700 rounded-lg
-        `}>
-            {iconeAvisoErro()}
-            <span>Ocorreu um erro fatal</span>
-            </div>
+        ) : false }
+        
 
         <AuthInput 
         label="Email"
