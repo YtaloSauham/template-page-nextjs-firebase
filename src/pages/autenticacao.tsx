@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AuthInput from "../components/auth/AuthInput";
-import { iconeGoogle } from "../components/icons";
+import { iconeAvisoErro, iconeGoogle } from "../components/icons";
 import BotaoAuth from "../components/templatate/BotaoAuth";
 import useAppData from "../data/hook/useAppData";
 
@@ -22,13 +22,23 @@ export default function Autenticacao(){
                 />
             </div>
              
-             <div className="m-10 w-full md:w-1/2  lg:w-1/3
+             <div className="m-10 w-2 md:w-1/2  lg:w-1/3
     ">
         <h1 className={`
         text-2xl font-bold mb-5
         `}>
             {modo === 'Login' ? 'Entre com a Sua Conta' : 'Cadastre-se na Plataforma'}
         </h1>
+
+        <div className={`
+        bg-red-400 text-white
+        py-3 px-5 
+        my-2
+        border border-red-700 rounded-lg
+        `}>
+            {iconeAvisoErro()}
+            <span>Ocorreu um erro fatal</span>
+            </div>
 
         <AuthInput 
         label="Email"
