@@ -3,8 +3,12 @@ import AuthInput from "../components/auth/AuthInput";
 import { iconeAvisoErro, iconeGoogle } from "../components/icons";
 import BotaoAuth from "../components/templatate/BotaoAuth";
 import useAppData from "../data/hook/useAppData";
+import useAuth from "../data/hook/useAuth";
 
 export default function Autenticacao(){
+
+    const { usuario, loginGoogle}= useAuth()
+
     const [erro,setErro] = useState('')
     const [email, setEmail] = useState('')
     const [password,setPassword] = useState('')
@@ -78,7 +82,7 @@ export default function Autenticacao(){
         />
 
 
-        <BotaoAuth onClick={submeter} 
+        <BotaoAuth onClick={loginGoogle} 
         className={`
         w-full bg-red-500 
         hover:bg-red-400
