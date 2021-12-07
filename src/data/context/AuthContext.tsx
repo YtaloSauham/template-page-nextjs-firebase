@@ -31,9 +31,10 @@ export function AuthProvider(props) {
        const resp = await firebase.auth().signInWithPopup(
            new firebase.auth.GoogleAuthProvider()
        )
-
+    
        if(resp.user?.email){
         const usuario =await usuarioNormalizado(resp.user)
+        // firebase.auth().currentUser.sendEmailVerification()
         setUsuario(usuario)
        route.push('/')
        
