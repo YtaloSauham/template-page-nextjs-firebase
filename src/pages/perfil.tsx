@@ -6,8 +6,8 @@ export default function Notificacoes() {
 
  
   return (
-    <Layout titulo="Notificacoes" subtitulo="Aqui vao as notificacoes">
-      <h3>CONTEUDO</h3> 
+    <Layout titulo="Perfil" subtitulo="Administre as suas informações de usúario">
+      <h3>Usuario</h3> 
       {/* <AppConsumer>
         {dados=><h3>{dados.nome}</h3>}
       </AppConsumer> */}
