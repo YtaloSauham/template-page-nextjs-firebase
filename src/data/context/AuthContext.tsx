@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import firebase  from "../../firebase/config";
 import Usuario from "../../model/Usuario";
 import route from 'next/router';
-
+import Cookies from 'js-cookie';
 
 interface AutContextProps {
     usuario?: Usuario
@@ -22,25 +22,50 @@ async function usuarioNormalizado(usuarioFirebase: firebase.User):Promise<Usuari
         
 }
 
+function gerenciarCookie(logado: boolean) {
+    if(logado) {
+        Cookies.set('auth-user', logado, {
+            expires: 7
+        })
+    } else {
+        Cookies.remove('auth-user')
+    }
+}
+
 const AuthContext = createContext<AutContextProps>({})
 
 export function AuthProvider(props) {
+    const [loading,setLoading] = useState(true)
     const [usuario, setUsuario]= useState<Usuario>(null)
 
+
+
+    async function configurarSessao(usuarioFirebase) {
+        if(usuarioFirebase?.email) {
+            const usuario = await usuarioNormalizado(usuarioFirebase)
+            setUsuario(usuario)
+            gerenciarCookie(true)
+            setLoading(false)
+            return usuario.email
+
+        } else {
+            gerenciarCookie(false)
+            setUsuario(null)
+            setLoading(false)
+            return false
+        }
+    }
    async function loginGoogle() {
        const resp = await firebase.auth().signInWithPopup(
            new firebase.auth.GoogleAuthProvider()
        )
     
-       if(resp.user?.email){
-        const usuario =await usuarioNormalizado(resp.user)
-        // firebase.auth().currentUser.sendEmailVerification()
-        setUsuario(usuario)
+      configurarSessao(resp.user)
        route.push('/')
        
        }
       
-   }
+   
 
 
     return (
