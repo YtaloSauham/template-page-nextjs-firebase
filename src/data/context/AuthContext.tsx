@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import firebase  from "../../firebase/config";
 import Usuario from "../../model/Usuario";
 import route from 'next/router';
@@ -64,6 +64,11 @@ export function AuthProvider(props) {
        route.push('/')
        
        }
+
+       useEffect(() => {
+           const cancelar = firebase.auth().onIdTokenChanged(configurarSessao)
+           return () => cancelar()
+       },[])
       
    
 
