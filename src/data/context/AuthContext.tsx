@@ -58,7 +58,7 @@ export function AuthProvider(props) {
    async function loginGoogle() {
        
     try{
-        
+
         const resp = await firebase.auth().signInWithPopup(
             new firebase.auth.GoogleAuthProvider()
         )
@@ -78,11 +78,15 @@ export function AuthProvider(props) {
 
     async function logaut() {
         try{
+
             setLoading(true)
             await firebase.auth().signOut()
             await configurarSessao(null)
+
         } finally {
+
             setLoading(false)
+            
         }
         
     }
