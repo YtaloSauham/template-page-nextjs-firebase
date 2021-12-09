@@ -56,14 +56,36 @@ export function AuthProvider(props) {
         }
     }
    async function loginGoogle() {
-       const resp = await firebase.auth().signInWithPopup(
-           new firebase.auth.GoogleAuthProvider()
-       )
+       
+    try{
+        
+        const resp = await firebase.auth().signInWithPopup(
+            new firebase.auth.GoogleAuthProvider()
+        )
+
+        configurarSessao(resp.user)
+        route.push('/')
+
+    } finally {
+
+        setLoading(false)
+
+    }
     
-      configurarSessao(resp.user)
-       route.push('/')
+      
        
        }
+
+    async function logaut() {
+        try{
+            setLoading(true)
+            await firebase.auth().signOut()
+            await configurarSessao(null)
+        } finally {
+            setLoading(false)
+        }
+        
+    }
 
        useEffect(() => {
            const cancelar = firebase.auth().onIdTokenChanged(configurarSessao)
