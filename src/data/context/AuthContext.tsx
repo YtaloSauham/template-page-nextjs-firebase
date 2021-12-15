@@ -7,6 +7,8 @@ import Cookies from 'js-cookie';
 interface AutContextProps {
     usuario?: Usuario
     loginGoogle?: () => Promise<void>
+    logaut?: () => Promise<void>
+    
 }
 
 async function usuarioNormalizado(usuarioFirebase: firebase.User):Promise<Usuario>{
@@ -92,8 +94,13 @@ export function AuthProvider(props) {
     }
 
        useEffect(() => {
-           const cancelar = firebase.auth().onIdTokenChanged(configurarSessao)
-           return () => cancelar()
+           if(Cookies.get('auth-user'))
+           {
+            const cancelar = firebase.auth().onIdTokenChanged(configurarSessao)
+            return () => cancelar()
+
+           }
+           
        },[])
       
    
@@ -102,7 +109,8 @@ export function AuthProvider(props) {
     return (
         <AuthContext.Provider value={{
             usuario,
-            loginGoogle
+            loginGoogle,
+            logaut
 
         }}>
             {props.children}
