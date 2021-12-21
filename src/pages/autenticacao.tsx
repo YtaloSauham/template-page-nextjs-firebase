@@ -32,7 +32,7 @@ export default function Autenticacao(){
                 />
             </div>
              
-             <div className="m-10 w-2 md:w-1/2  lg:w-1/3
+             <div className="m-10 w-full md:w-1/2  lg:w-1/3
     ">
         <h1 className={`
         text-2xl font-bold mb-5
