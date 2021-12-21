@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import router from 'next/router';
-import Load from '../../../public/img/loading.gif'
-import useAuth from '../../data/hook/useAuth'
+import Load from '../../public/img/loading.gif'
+import useAuth from '../data/hook/useAuth'
 
 
-export default function ForcarAutenticacao(props){
+export default function ForcarAutenticacao(jsx){
 
     const {usuario,loading} = useAuth();
     
@@ -22,7 +22,7 @@ export default function ForcarAutenticacao(props){
                         }}
                    />
                 </head>
-            {props.children}
+            {jsx}
             </>
         )
     }
