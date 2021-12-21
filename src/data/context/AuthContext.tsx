@@ -8,6 +8,7 @@ interface AutContextProps {
     usuario?: Usuario
     loginGoogle?: () => Promise<void>
     logaut?: () => Promise<void>
+    loading?: boolean
     
 }
 
@@ -99,6 +100,8 @@ export function AuthProvider(props) {
             const cancelar = firebase.auth().onIdTokenChanged(configurarSessao)
             return () => cancelar()
 
+           } else{
+               setLoading(false)
            }
            
        },[])
@@ -109,8 +112,9 @@ export function AuthProvider(props) {
     return (
         <AuthContext.Provider value={{
             usuario,
+            loading,
             loginGoogle,
-            logaut
+            logaut,
 
         }}>
             {props.children}
