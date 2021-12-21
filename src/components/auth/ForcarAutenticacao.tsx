@@ -11,6 +11,17 @@ export default function ForcarAutenticacao(props){
     function renderizarConteudo(){
         return(
             <>
+                <head>
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                                if(!document.cookie?.includes("auth-user")){
+                                    window.location.href = "/autenticacao"
+                                }
+                            `
+                        }}
+                   />
+                </head>
             {props.children}
             </>
         )
