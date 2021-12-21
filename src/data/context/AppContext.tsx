@@ -1,13 +1,13 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 
-type Tema = 'dark' | ''
+
 type Modo= 'Login' | 'Cadastro' 
 
 
 interface AppContextProps{
     modo?: Modo
-    tema?: Tema
+    tema?: string
     alternarTema?: () => void
     submeter?: () => void
 
@@ -16,16 +16,23 @@ interface AppContextProps{
 const AppContext = createContext<AppContextProps>({})
 
 export function AppProvider(props) {
-    const [theme,setTheme]=useState<Tema>('');
+    const [theme,setTheme]=useState('');
     const [modo,setModo]= useState<Modo>('Login')
 
+
+    useEffect(() =>{
+        const themeLocal = localStorage.getItem('tema')
+        setTheme(themeLocal)
+    },[])
     function submeter(){
-      setModo(modo === 'Login'? 'Cadastro' : 'Login')
+      setModo(modo === 'Login' ? 'Cadastro' : 'Login')
     }
     
     function alternarTema(){
-        setTheme(theme=== 'dark' ? '' : 'dark')
-        console.log(theme)
+        const novoTema= theme=== 'dark' ? '' : 'dark'
+        setTheme(novoTema)
+        localStorage.setItem('tema',novoTema)
+        
     }
     return ( 
         <AppContext.Provider value={{
