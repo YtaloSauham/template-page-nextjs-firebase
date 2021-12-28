@@ -7,9 +7,10 @@ type Modo= 'Login' | 'Cadastro'
 
 interface AppContextProps{
     modo?: Modo
+    mudarModo?:() => void
     tema?: string
     alternarTema?: () => void
-    submeter?: () => void
+   
 
 }
 
@@ -20,14 +21,21 @@ export function AppProvider(props) {
     const [modo,setModo]= useState<Modo>('Login')
 
 
+   function mudarModo(){
+        
+            if(modo === 'Login'){
+                setModo('Cadastro')
+            } else{
+                setModo('Login')
+            }
+              
+            }
+
     useEffect(() =>{
         const themeLocal = localStorage.getItem('tema')
         setTheme(themeLocal)
     },[])
-    function submeter(){
-      setModo(modo === 'Login' ? 'Cadastro' : 'Login')
-    }
-    
+   
     function alternarTema(){
         const novoTema= theme=== 'dark' ? '' : 'dark'
         setTheme(novoTema)
@@ -38,8 +46,9 @@ export function AppProvider(props) {
         <AppContext.Provider value={{
             tema: theme,
             modo:modo,
+            mudarModo,
             alternarTema,
-            submeter
+            
         }}>
             {props.children}
         </AppContext.Provider>

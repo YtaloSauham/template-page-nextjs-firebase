@@ -7,6 +7,8 @@ import Cookies from 'js-cookie';
 interface AutContextProps {
     usuario?: Usuario
     loginGoogle?: () => Promise<void>
+    login?: (email: string, senha: string) => Promise<void>
+    cadastro?: (email: string, senha: string) => Promise<void>
     logaut?: () => Promise<void>
     loading?: boolean
     
@@ -62,11 +64,12 @@ export function AuthProvider(props) {
        
     try{
 
+        setLoading(true)
         const resp = await firebase.auth().signInWithPopup(
             new firebase.auth.GoogleAuthProvider()
         )
 
-        configurarSessao(resp.user)
+        await configurarSessao(resp.user)
         route.push('/')
 
     } finally {
@@ -75,9 +78,51 @@ export function AuthProvider(props) {
 
     }
     
+    
       
        
        }
+       async function login(email, senha) {
+       
+        try{
+    
+            setLoading(true)
+            const resp = await firebase.auth().signInWithEmailAndPassword(email, senha)
+    
+            await configurarSessao(resp.user)
+            route.push('/')
+    
+        } finally {
+    
+            setLoading(false)
+    
+        }
+        
+        
+          
+           
+           }
+
+           async function cadastro(email, senha) {
+       
+            try{
+        
+                setLoading(true)
+                const resp = await firebase.auth().createUserWithEmailAndPassword(email, senha)
+        
+                await configurarSessao(resp.user)
+                route.push('/')
+        
+            } finally {
+        
+                setLoading(false)
+        
+            }
+            
+            
+              
+               
+               }
 
     async function logaut() {
         try{
@@ -114,7 +159,9 @@ export function AuthProvider(props) {
             usuario,
             loading,
             loginGoogle,
-            logaut,
+            login,
+            cadastro,
+            logaut
 
         }}>
             {props.children}

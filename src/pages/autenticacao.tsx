@@ -7,12 +7,31 @@ import useAuth from "../data/hook/useAuth";
 
 export default function Autenticacao(){
 
-    const { usuario, loginGoogle}= useAuth()
-
+    const { cadastro,login,usuario, loginGoogle}= useAuth()
     const [erro,setErro] = useState('')
     const [email, setEmail] = useState('')
     const [password,setPassword] = useState('')
-    const {modo,submeter}=useAppData()
+    const {modo,mudarModo}=useAppData()
+
+
+
+
+    async function submeter(){
+        try{
+            if(modo === 'Login' ){
+                await login(email,password)
+            } else{
+              
+                await cadastro(email,password)
+            }
+            
+
+        } catch(e){
+            msgErro(e?.message ?? 'Erro inesperado')
+        }
+      
+      }
+      
     
 
     function msgErro(msg:string,tempo = 5){
@@ -126,7 +145,7 @@ export default function Autenticacao(){
 
                 <p className={`mt-8`}>
                     Novo por aqui?
-                     <a onClick={() =>submeter()}
+                     <a onClick={() =>mudarModo()}
                      className={`
                         text-blue-500 font-semibold
                         hover:text-blue-700
@@ -140,7 +159,7 @@ export default function Autenticacao(){
             ):
            ( <p className={`mt-8`}>
                Já tem uma conta? 
-                   <a onClick={() => submeter()}
+                   <a onClick={() => mudarModo()}
             className={`
             text-blue-500 font-semibold
                         hover:text-blue-700
