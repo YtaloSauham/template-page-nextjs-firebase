@@ -4,6 +4,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ![image](https://user-images.githubusercontent.com/85992772/144948011-811a17c3-3406-4fe0-896e-3692955598f0.png)
 
+![Opera Instantâneo_2021-12-28_184351_localhost](https://user-images.githubusercontent.com/85992772/147609325-6353f118-44ed-4f25-82bb-4290123a38fb.png)
+
+
+![image](https://user-images.githubusercontent.com/85992772/146857554-c9ee9e9a-2528-4087-96f1-86d9a3f5983d.png)
+
+
 
 ## Getting Started
 
